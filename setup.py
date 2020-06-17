@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="lifetracker-sgrady", # Replace with your own username
+    name="sgrady-lifetracker", # Replace with your own username
     version="0.0.1",
     author="Sean Grady",
     author_email="vedicmonk@gmail.com",
