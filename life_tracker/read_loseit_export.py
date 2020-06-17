@@ -1,5 +1,5 @@
 import csv
-from models import LoseitFood
+from models import LoseitFood, WeighIn
 from datetime import datetime
 from crud import scoped_session
 import argparse
@@ -23,12 +23,42 @@ fieldnames_map = {
 }
 
 
-def read_loseit_export(filepath):
+def read_loseit_export(filepath, filetype):
+    if filetype == 'food':
+        read_food_log(filepath)
+    elif filetype == 'weight':
+        read_weight_log(filepath)
+    else:
+        raise ValueError("Unsupported file type.")
+
+
+def read_weight_log(filepath):
     with open(filepath) as csv_file:
-        loseit_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
+        weight_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
+        weight_records = []
+        for line in weight_reader:
+            weight_record = read_weight_log_line(line)
+            weight_records.append(weight_record)
+        with scoped_session() as session:
+            session.add_all(weight_records)
+
+
+def read_weight_log_line(line_map):
+    date = datetime.strptime(line_map['Date'], '%m/%d/%Y')
+    weight = float(line_map['Weight'])
+    weigh_in = WeighIn(
+        date=date,
+        weight_lbs=weight,
+    )
+    return weigh_in
+ 
+
+def read_food_log(filepath):
+    with open(filepath) as csv_file:
+        food_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
         food_records = []
-        for line in loseit_reader:
-            food_record = read_line(line)
+        for line in food_reader:
+            food_record = read_food_log_line(line)
             food_records.append(food_record)
         with scoped_session() as session:
             session.add_all(food_records)
@@ -41,7 +71,7 @@ def set_not_applicable_to_none(value):
         return value
 
 
-def read_line(line_map):
+def read_food_log_line(line_map):
     line_map = dict(zip(line_map, map(set_not_applicable_to_none, line_map.values())))
     calories = line_map['Calories']
     try:
@@ -76,5 +106,11 @@ if __name__ == '__main__':
         help="Path to Loseit export csv file.",
         type=str,
     )
+    parser.add_argument(
+        "-t",
+        "--filetype",
+        help="Export type. 'food' for food log, 'weight' for weight log",
+        type=str,
+    )
     args = parser.parse_args()
-    read_loseit_export(args.filepath)
+    read_loseit_export(args.filepath, args.filetype)
