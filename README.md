@@ -1,8 +1,17 @@
 # life_tracker
 
 # Google Cloud SQL Proxy
-to connect:
+to launch the proxy:
+
+```
 ./cloud_sql_proxy -instances=life-tracker-personal:us-west1:lifetracker-personal-psqldb=tcp:5432
+```
+
+to connect to the proxy with the psql client:
+
+```
+psql "host=127.0.0.1 sslmode=disable dbname=lifetracker-test user=postgres"
+```
 
 # Installing for local development
 
