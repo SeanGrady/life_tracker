@@ -4,5 +4,5 @@ local_files/
 *.swp
 *.pyc
 cloud_sql_proxy
-WeeklySummary*
+*.csv
 *.egg-info
