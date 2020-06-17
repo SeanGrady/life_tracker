@@ -38,3 +38,6 @@ pip uninstall lifetracker-sgrady
 ```
 
 But if, for some reason, this does not work, you should be able to manually uninstall the package by deleteing the .egg-link file in your python install's `site-packages/` folder and deleting the entry from `easy-install.pth` in the same folder.
+
+# Useful Commands
+`alembic revision --autogenerate -m "<MESSAGE>"`
