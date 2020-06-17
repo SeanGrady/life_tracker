@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from lifetracker_config import DATABASE_URI
+from config import DATABASE_URI
 from models import Base
 from contextlib import contextmanager
 
