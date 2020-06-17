@@ -5,3 +5,4 @@ local_files/
 *.pyc
 cloud_sql_proxy
 WeeklySummary*
+*.egg-info
