@@ -22,3 +22,10 @@ class LoseitFood(Base):
     raw_fiber_g = Column(Float)
     raw_cholesterol_mg = Column(Float)
     raw_sodium_mg = Column(Float)
+
+
+class WeighIn(Base):
+    __tablename__ = "weigh_in"
+    id = Column(Integer, primary_key=True)
+    date = Column(Date)
+    weight_lbs = Column(Float)
