@@ -1,5 +1,7 @@
 # life_tracker
 
+Currently the project is set up to store google form responses in a google sheets spreadsheet as they come in. A more robust option in the future is to use a google apps script trigger to send form responses directly to the database when they're submitted, but this will require keeping the database instance running which will cost money. For the time being, a script to grab everything new from the spreadsheet and store it in the database is going to the solution.
+
 # Google Cloud SQL Proxy
 to launch the proxy:
 
