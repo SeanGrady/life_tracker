@@ -34,7 +34,7 @@ To install this project in an editable state (for real though, in your virtual e
 pip install -r requirements.txt
 ```
 
-Then run
+Then, from the project root directory, run
 
 ```
 pip install -e .
