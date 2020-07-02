@@ -29,3 +29,12 @@ class WeighIn(Base):
     id = Column(Integer, primary_key=True)
     date = Column(Date)
     weight_lbs = Column(Float)
+
+
+class MoodSurveyResponse(Base):
+    __tablename__ = "mood_survey_response"
+    id = Column(Integer, primary_key=True)
+    mood = Column(Integer)
+    energy = Column(Integer)
+    adderal_crash = Column(Integer)
+    sleep_hours = Column(Integer)
