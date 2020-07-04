@@ -4,6 +4,7 @@ from sqlalchemy import (
     String,
     Date,
     Float,
+    DateTime,
 )
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -44,3 +45,4 @@ class MoodSurveyResponse(Base):
     energy = Column(Integer)
     adderal_crash = Column(Integer)
     sleep_hours = Column(Integer)
+    date_time = Column(DateTime)
