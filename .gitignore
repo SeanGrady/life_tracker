@@ -6,3 +6,4 @@ local_files/
 cloud_sql_proxy
 *.csv
 *.egg-info
+*.sh
