@@ -7,3 +7,4 @@ cloud_sql_proxy
 *.csv
 *.egg-info
 *.sh
+create_first_user.py
