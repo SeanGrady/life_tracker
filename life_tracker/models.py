@@ -6,6 +6,7 @@ from sqlalchemy import (
     Float,
     DateTime,
     ForeignKey,
+    UniqueConstraint,
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -60,6 +61,12 @@ class WeighIn(Base):
 
 class MoodSurveyResponse(Base):
     __tablename__ = 'mood_survey_response'
+    __table_args__ = (
+        UniqueConstraint(
+            'app_user_id',
+            'date_time',
+        ),
+    )
     id = Column(Integer, primary_key=True)
     app_user_id = Column(
         Integer,
