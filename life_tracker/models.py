@@ -17,6 +17,15 @@ Base = declarative_base()
 class LoseitFood(Base):
     __tablename__ = 'loseit_food'
     id = Column(Integer, primary_key=True)
+    app_user_id = Column(
+        Integer,
+        ForeignKey('app_user.id'),
+        nullable=False,
+    )
+    app_user = relationship(
+        'AppUser',
+        back_populates='loseit_foods',
+    )
     raw_date = Column(Date)
     raw_name = Column(String)
     raw_type = Column(String)
@@ -76,6 +85,10 @@ class AppUser(Base):
     )
     weigh_ins = relationship(
         'WeighIn',
+        back_populates='app_user',
+    )
+    loseit_foods = relationship(
+        'LoseitFood',
         back_populates='app_user',
     )
     first_name = Column(String)
