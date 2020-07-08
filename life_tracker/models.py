@@ -38,7 +38,11 @@ class WeighIn(Base):
     id = Column(Integer, primary_key=True)
     date = Column(Date)
     weight_lbs = Column(Float)
-    app_user_id = Column(Integer, ForeignKey('app_user.id'))
+    app_user_id = Column(
+        Integer,
+        ForeignKey('app_user.id'),
+        nullable=False,
+    )
     app_user = relationship(
         'AppUser',
         back_populates='weigh_ins',
@@ -48,7 +52,11 @@ class WeighIn(Base):
 class MoodSurveyResponse(Base):
     __tablename__ = 'mood_survey_response'
     id = Column(Integer, primary_key=True)
-    app_user_id = Column(Integer, ForeignKey('app_user.id'))
+    app_user_id = Column(
+        Integer,
+        ForeignKey('app_user.id'),
+        nullable=False,
+    )
     app_user = relationship(
         'AppUser',
         back_populates='mood_survey_responses',
