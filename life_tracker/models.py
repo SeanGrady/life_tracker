@@ -61,17 +61,11 @@ class WeighIn(Base):
 
 class MoodSurveyResponse(Base):
     __tablename__ = 'mood_survey_response'
-    __table_args__ = (
-        UniqueConstraint(
-            'app_user_id',
-            'date_time',
-        ),
-    )
-    id = Column(Integer, primary_key=True)
     app_user_id = Column(
         Integer,
         ForeignKey('app_user.id'),
         nullable=False,
+        primary_key=True,
     )
     app_user = relationship(
         'AppUser',
@@ -81,7 +75,10 @@ class MoodSurveyResponse(Base):
     energy = Column(Integer)
     adderall_crash = Column(Integer)
     sleep_hours = Column(Integer)
-    date_time = Column(DateTime)
+    date_time = Column(
+        DateTime,
+        primary_key=True,
+    )
 
 class AppUser(Base):
     __tablename__ = 'app_user'
