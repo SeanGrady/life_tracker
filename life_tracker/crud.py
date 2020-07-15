@@ -15,8 +15,8 @@ def recreate_database():
 
 
 @contextmanager
-def scoped_session():
-    session = Session()
+def scoped_session(*args, **kwargs):
+    session = Session(*args, **kwargs)
     try:
         yield session
         session.commit()
