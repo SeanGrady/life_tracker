@@ -60,7 +60,7 @@ class WeighIn(Base):
 
 
 class SleepSurveyResponse(Base):
-    __tablename_ = 'sleep_survey_response'
+    __tablename__ = 'sleep_survey_response'
     app_user_id = Column(
         Integer,
         ForeignKey('app_user.id'),
