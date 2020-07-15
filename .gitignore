@@ -8,3 +8,4 @@ cloud_sql_proxy
 *.egg-info
 *.sh
 create_first_user.py
+restart_database.py
