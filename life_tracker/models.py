@@ -74,7 +74,7 @@ class MoodSurveyResponse(Base):
     mood = Column(Integer)
     energy = Column(Integer)
     adderall_crash = Column(Integer)
-    sleep_hours = Column(Integer)
+    sleep_hours = Column(Float)
     date_time = Column(
         DateTime,
         primary_key=True,
