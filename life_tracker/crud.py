@@ -25,3 +25,10 @@ def scoped_session(*args, **kwargs):
         raise
     finally:
         session.close()
+
+
+if __name__ == "__main__":
+    from models import *
+    with scoped_session() as session:
+        import pdb;pdb.set_trace()
+        pass
