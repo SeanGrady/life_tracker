@@ -8,7 +8,7 @@ from models import (
 from dateutil.parser import parse
 from crud import (
     insert_if_not_exists,
-    scoped_session,
+    contextual_session,
 )
 
 
@@ -31,7 +31,7 @@ def insert_survey_responses(survey_type):
 
 
 def add_survey_responses_to_database(survey_type, survey_responses):
-    with scoped_session() as session:
+    with contextual_session() as session:
         try:
             user = session.query(AppUser).filter_by(id=user_id).one()
         except:

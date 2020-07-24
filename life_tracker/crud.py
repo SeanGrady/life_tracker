@@ -16,7 +16,7 @@ def recreate_database():
 
 
 @contextmanager
-def scoped_session(*args, **kwargs):
+def contextual_session(*args, **kwargs):
     session = Session(*args, **kwargs)
     try:
         yield session
@@ -41,6 +41,6 @@ def insert_if_not_exists(session, model, rows):
 
 if __name__ == "__main__":
     from models import *
-    with scoped_session() as session:
+    with contextual_session() as session:
         import pdb;pdb.set_trace()
         pass

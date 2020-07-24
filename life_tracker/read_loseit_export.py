@@ -1,7 +1,7 @@
 import csv
 from models import LoseitFood, WeighIn
 from datetime import datetime
-from crud import scoped_session
+from crud import contextual_session
 import argparse
 
 
@@ -39,7 +39,7 @@ def read_weight_log(filepath):
         for line in weight_reader:
             weight_record = read_weight_log_line(line)
             weight_records.append(weight_record)
-        with scoped_session() as session:
+        with contextual_session() as session:
             session.add_all(weight_records)
 
 
@@ -60,7 +60,7 @@ def read_food_log(filepath):
         for line in food_reader:
             food_record = read_food_log_line(line)
             food_records.append(food_record)
-        with scoped_session() as session:
+        with contextual_session() as session:
             session.add_all(food_records)
 
 
