@@ -84,8 +84,9 @@ class WeighIn(Base, AppUserMixin):
 class GformResponseMixin(object):
     @declared_attr
     def date_time(cls):
-        Column(
+        return Column(
             DateTime,
+            nullable=False,
             primary_key=True,
         )
 
