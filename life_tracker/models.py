@@ -123,3 +123,8 @@ class MoodSurveyResponse(Base, AppUserMixin, GformResponseMixin):
     energy = Column(Integer)
     adderall_crash = Column(Integer)
     sleep_hours = Column(Float)
+
+
+class BodyFatPercentage(Base, AppUserMixin, DailyLogMixin):
+    __tablename__ = 'body_fat_percentage'
+    body_fat_percentage = Column(Float)
