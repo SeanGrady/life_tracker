@@ -83,16 +83,13 @@ class LoseitFood(Base, AppUserMixin):
 
 
 class DailyLogMixin(object):
-    id = Column(
-        Integer,
-        primary_key=True,
-        nullable=False,
-    )
-    date = Column(
-        Date,
-        primary_key=True,
-        nullabel=False,
-    )
+    @declared_attr
+    def date(cls):
+        return Column(
+            Date,
+            primary_key=True,
+            nullable=False,
+        )
 
 
 class WeighIn(Base, AppUserMixin, DailyLogMixin):
@@ -131,13 +128,18 @@ class CronometerExportMixin(object):
         return Column(
             DateTime,
             nullable=False,
+            primary_key=True,
         )
 
 
 class CronometerExercise(Base, AppUserMixin, CronometerExportMixin):
     __tablename__ = 'cronometer_exercise'
+    exercise = Column(
+        String,
+        nullable=False,
+        primary_key=True,
+    )
     group = Column(String)
-    exercise = Column(String)
     mintues = Column(Float)
     calories_burned = Column(Float)
 
