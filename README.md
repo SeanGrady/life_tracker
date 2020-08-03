@@ -1,4 +1,5 @@
 # life_tracker
+See also additional documentation in [the wiki](https://github.com/SeanGrady/life_tracker/wiki)
 
 # Google Form Responses Intake
 
