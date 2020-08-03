@@ -82,14 +82,21 @@ class LoseitFood(Base, AppUserMixin):
     raw_sodium_mg = Column(Float)
 
 
-class WeighIn(Base, AppUserMixin):
-    __tablename__ = 'weigh_in'
+class DailyLogMixin(object):
     id = Column(
         Integer,
         primary_key=True,
         nullable=False,
     )
-    date = Column(Date)
+    date = Column(
+        Date,
+        primary_key=True,
+        nullabel=False,
+    )
+
+
+class WeighIn(Base, AppUserMixin, DailyLogMixin):
+    __tablename__ = 'weigh_in'
     weight_lbs = Column(Float)
 
 
