@@ -33,7 +33,11 @@ class AppUserMixin(object):
 
 class AppUser(Base):
     __tablename__ = 'app_user'
-    id = Column(Integer, primary_key=True)
+    id = Column(
+        Integer,
+        primary_key=True,
+        nullable=False,
+    )
     mood_survey_responses = relationship(
         'MoodSurveyResponse',
         backref='app_user',
@@ -57,7 +61,11 @@ class AppUser(Base):
 
 class LoseitFood(Base, AppUserMixin):
     __tablename__ = 'loseit_food'
-    id = Column(Integer, primary_key=True)
+    id = Column(
+        Integer,
+        primary_key=True,
+        nullable=False,
+    )
     raw_date = Column(Date)
     raw_name = Column(String)
     raw_type = Column(String)
@@ -76,7 +84,11 @@ class LoseitFood(Base, AppUserMixin):
 
 class WeighIn(Base, AppUserMixin):
     __tablename__ = 'weigh_in'
-    id = Column(Integer, primary_key=True)
+    id = Column(
+        Integer,
+        primary_key=True,
+        nullable=False,
+    )
     date = Column(Date)
     weight_lbs = Column(Float)
 
