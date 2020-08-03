@@ -125,6 +125,23 @@ class MoodSurveyResponse(Base, AppUserMixin, GformResponseMixin):
     sleep_hours = Column(Float)
 
 
+class CronometerExportMixin(object):
+    @declared_attr
+    def date_time(cls):
+        return Column(
+            DateTime,
+            nullable=False,
+        )
+
+
+class CronometerExercise(Base, AppUserMixin, CronometerExportMixin):
+    __tablename__ = 'cronometer_exercise'
+    group = Column(String)
+    exercise = Column(String)
+    mintues = Column(Float)
+    calories_burned = Column(Float)
+
+
 class BodyFatPercentage(Base, AppUserMixin, DailyLogMixin):
     __tablename__ = 'body_fat_percentage'
     body_fat_percentage = Column(Float)
