@@ -13,8 +13,8 @@ config = context.config
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
 
-from life_tracker.config import DATABASE_URI
-config.set_main_option('sqlalchemy.url', DATABASE_URI)
+from life_tracker.config import AppConfig
+config.set_main_option('sqlalchemy.url', AppConfig.DATABASE_URI)
 
 # add your model's MetaData object here
 # for 'autogenerate' support

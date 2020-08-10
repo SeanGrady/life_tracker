@@ -1,12 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from life_tracker.config import DATABASE_URI
+from life_tracker.config import AppConfig
 from models import Base
 from contextlib import contextmanager
 from sqlalchemy.dialects.postgresql import insert
 
 
-engine = create_engine(DATABASE_URI)
+engine = create_engine(AppConfig.DATABASE_URI)
 Session = sessionmaker(bind=engine)
 
 
