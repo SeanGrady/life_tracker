@@ -19,7 +19,7 @@ config.set_main_option('sqlalchemy.url', DATABASE_URI)
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
-from life_tracker.models import Base
+from life_tracker.backend.models import Base
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
