@@ -4,7 +4,7 @@ import time
 import unittest
 
 
-class FlaskAppTest(unittest.TestCase):
+class LifetrackerHomePageTest(unittest.TestCase):
     
     def setUp(self):
         chrome_options = webdriver.chrome.options.Options()
@@ -21,9 +21,19 @@ class FlaskAppTest(unittest.TestCase):
         time.sleep(1)
         self.browser.quit()
 
-    def test_app_works(self):
+    # Edith has heard about a life tracking app. She goes to check out its home
+    # page.
+
+    # She notices the title
+    def test_title(self):
         self.browser.get('http://localhost:5000')
-        self.assertIn('flask app', self.browser.page_source)
+        self.assertIn('LifeTracker', self.browser.title)
+
+    # There are some examples of things the lifetracker can do
+
+    # There is a login/register doodad
+
+
 
 
 if __name__ == '__main__':
