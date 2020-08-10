@@ -53,3 +53,7 @@ But if, for some reason, this does not work, you should be able to manually unin
 
 # Useful Commands
 `alembic revision --autogenerate -m "<MESSAGE>"`
+
+# To Document:
+
+installin selenium?
