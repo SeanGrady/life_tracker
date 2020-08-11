@@ -56,4 +56,6 @@ But if, for some reason, this does not work, you should be able to manually unin
 
 # To Document:
 
-installin selenium?
+installing selenium?
+
+Why I'm using a context manager instesad of sqlalchemy's `scoped_session()` function. (https://stackoverflow.com/a/12223711)
