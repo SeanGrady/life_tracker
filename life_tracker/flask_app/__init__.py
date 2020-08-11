@@ -1,5 +1,5 @@
 from flask import Flask
-from life_tracker import AppConfig
+from life_tracker.config import AppConfig
 
 
 app = Flask(__name__)

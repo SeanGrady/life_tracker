@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from life_tracker.config import AppConfig
-from models import Base
+from backend.models import Base
 from contextlib import contextmanager
 from sqlalchemy.dialects.postgresql import insert
 
