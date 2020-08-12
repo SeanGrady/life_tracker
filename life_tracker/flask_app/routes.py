@@ -1,7 +1,7 @@
-from flask_app import (
+from . import (
     app,
 )
-from flask_app.forms import (
+from .forms import (
     LoginForm,
 )
 from flask import (

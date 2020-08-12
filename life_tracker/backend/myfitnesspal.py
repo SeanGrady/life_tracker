@@ -1,7 +1,7 @@
 import csv
-from models import (
+from .models import (
     MyFitnessPal
 )
 from datetime import datetime
-from crud import contextual_session
+from .crud import contextual_session
 import argparse

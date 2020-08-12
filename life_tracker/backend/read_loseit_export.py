@@ -1,7 +1,7 @@
 import csv
-from models import LoseitFood, WeighIn
+from .models import LoseitFood, WeighIn
 from datetime import datetime
-from crud import contextual_session
+from .crud import contextual_session
 import argparse
 
 
