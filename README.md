@@ -3,6 +3,8 @@ See also additional documentation in [the wiki](https://github.com/SeanGrady/lif
 
 # Google Form Responses Intake
 
+regarding email addresses: currently the only way to link gforms responses is via manually entered email addresses. The only way around this currently (afaik) is to either use a different form provider or use the apps script ResponseTrigger event, which would have to store the response somewhere (i.e. spin up the database). That's probably the correct way to do things if/when I actually have users but for now I want to keep the database off most of the time so manual email addresses it is.
+
 Currently the project is set up to store google form responses in a google sheets spreadsheet as they come in. A more robust option in the future is to use a google apps script trigger to send form responses directly to the database when they're submitted, but this will require keeping the database instance running which will cost money. For the time being, a script to grab everything new from the spreadsheet and store it in the database is going to the solution.
 
 UPDATE: Cloud SQL instances can be started/stopped programatically as detailed [here](https://cloud.google.com/sql/docs/postgres/start-stop-restart-instance). For the moment I'm still going to use a python script run locally and manually to grab everything from the Google Sheet(s) and do the ETL for two reasons:
