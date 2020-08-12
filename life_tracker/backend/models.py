@@ -15,6 +15,8 @@ from sqlalchemy.ext.declarative import (
 from sqlalchemy.orm import (
     relationship,
 )
+from flask_login import UserMixin as FlaskLoginMixin
+from ..flask_app import login
 
 
 Base = declarative_base()
@@ -31,13 +33,25 @@ class AppUserMixin(object):
         )
 
 
-class AppUser(Base):
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+
+class AppUser(FlaskLoginMixin, Base):
     __tablename__ = 'app_user'
     id = Column(
         Integer,
         primary_key=True,
         nullable=False,
     )
+
+    password_hash = Column(String)
+    username = Column(String)
+    first_name = Column(String)
+    last_name = Column(String)
+    email = Column(String)
+
     mood_survey_responses = relationship(
         'MoodSurveyResponse',
         backref='app_user',
@@ -54,9 +68,19 @@ class AppUser(Base):
         'LoseitFood',
         backref='app_user',
     )
-    first_name = Column(String)
-    last_name = Column(String)
-    email = Column(String)
+
+    def set_password(self, password):
+        hashed = self.encrypt_password(password)
+        self.password_hash = hashed
+
+    def check_password(self, password):
+        return self.check_encrypted_password(password, self.password_hash)
+
+    def encrpyt_password(self, password):
+        return pwd_context.encrypt(password)
+
+    def check_encrypted_password(self, password, hashed):
+        return pwd_context.verify(password, hashed)
 
 
 class LoseitFood(Base, AppUserMixin):
