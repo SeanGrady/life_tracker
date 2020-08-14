@@ -57,6 +57,7 @@ But if, for some reason, this does not work, you should be able to manually unin
 `alembic revision --autogenerate -m "<MESSAGE>"`
 
 # To Document:
+Whatever the heck is giong on with the flask_login user_loader function. It can't be in the models.py file, because it needs to import the contextual session from crud.py, which imports base from the models.py file, which causes a circular import. So it should be in its own file (or in the flask_app/__init__.py or something, which is _clearly_ wrong), but then it never gets run because before it was only getting run because UserApp was being imported from models.py so the rest of models.py got run as a side effect. This also seems clearly wrong, but splitting into its own file means I have to make sure it gets run somehow, so I import its module in its sub-package's __init__.py.
 
 installing selenium?
 

@@ -16,7 +16,9 @@ from sqlalchemy.orm import (
     relationship,
 )
 from flask_login import UserMixin as FlaskLoginMixin
-from ..flask_app import login
+from .security import (
+    pwd_context,
+)
 
 
 Base = declarative_base()
@@ -31,11 +33,6 @@ class AppUserMixin(object):
             nullable=False,
             primary_key=True,
         )
-
-
-@login.user_loader
-def load_user(id):
-    return User.query.get(int(id))
 
 
 class AppUser(FlaskLoginMixin, Base):
@@ -76,7 +73,7 @@ class AppUser(FlaskLoginMixin, Base):
     def check_password(self, password):
         return self.check_encrypted_password(password, self.password_hash)
 
-    def encrpyt_password(self, password):
+    def encrypt_password(self, password):
         return pwd_context.encrypt(password)
 
     def check_encrypted_password(self, password, hashed):
