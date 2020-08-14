@@ -1,5 +1,8 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import (
+    sessionmaker,
+    scoped_session,
+)
 from ..config import AppConfig
 from .models import Base
 from contextlib import contextmanager
@@ -26,6 +29,9 @@ def contextual_session(*args, **kwargs):
         raise
     finally:
         session.close()
+
+
+db_session = scoped_session(sessionmaker(bind=engine))
 
 
 def insert_if_not_exists(session, model, rows):

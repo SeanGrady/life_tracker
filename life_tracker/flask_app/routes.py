@@ -46,15 +46,14 @@ def login():
     # otherwise, give a generic and unhelpful error (to avoid exploits)
     form = LoginForm()
     if form.validate_on_submit():
-        with contextual_session() as session:
-            user = session.query(AppUser).filter_by(username=form.username.data).first()
+        user = app.session.query(AppUser).filter_by(username=form.username.data).first()
 
-            if user is None or not user.check_password(form.password.data):
-                flash(failed_login_message)
-                return redirect(url_for('login'))
+        if user is None or not user.check_password(form.password.data):
+            flash(failed_login_message)
+            return redirect(url_for('login'))
 
-            login_user(user, remember=form.remember_me.data)
-            return redirect(url_for('index'))
+        login_user(user, remember=form.remember_me.data)
+        return redirect(url_for('index'))
     
     # The user has not submitted a login form, therefore render it unto them
     return render_template(
