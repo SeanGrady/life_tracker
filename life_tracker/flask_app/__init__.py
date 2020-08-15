@@ -4,12 +4,18 @@ from flask_login import LoginManager
 from ..backend.crud import db_session
 
 
-app = Flask(__name__)
-app.config.from_object(AppConfig)
-login = LoginManager(app)
+login_manager = LoginManager()
 
-from . import user_loader
 
-app.session = db_session
+def create_app():
+    app = Flask(__name__, instance_relative_config=False)
+    app.config.from_object(AppConfig)
 
-from . import routes
+    app.session = db_session
+    login_manager.init_app(app)
+
+    with app.app_context():
+        from . import routes
+        from . import user_loader
+
+        return app
