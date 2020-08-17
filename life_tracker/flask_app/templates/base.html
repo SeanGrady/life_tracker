@@ -1,16 +1,20 @@
 <html>
     <head>
-		{% if user %}
-        <title>{{user.username}} - {{ title }}</title>
+		{% if current_user.is_authenticated %}
+        <title>{{current_user.first_name}} - LifeTracker</title>
 		{% else %}
-        <title>{{ title }}</title>
+        <title>LifeTracker</title>
 		{% endif %}
     </head>
     <body>
         <div>
             LifeTracker: 
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('login') }}">Log In</a>
+            <a href="{{ url_for('home_bp.index') }}">Home</a>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('auth_bp.login') }}">Log In</a>
+            {% else %}
+            <a href="{{ url_for('auth_bp.logout') }}">Log Out</a>
+            {% endif %}
         </div>
         <hr>
         {% with messages = get_flashed_messages() %}

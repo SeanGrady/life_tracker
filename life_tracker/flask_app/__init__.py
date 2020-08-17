@@ -15,7 +15,10 @@ def create_app():
     login_manager.init_app(app)
 
     with app.app_context():
-        from . import routes
-        from . import user_loader
+        from .home import home
+        from .auth import auth
+
+        app.register_blueprint(home.home_bp)
+        app.register_blueprint(auth.auth_bp)
 
         return app
