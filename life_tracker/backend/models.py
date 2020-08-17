@@ -44,10 +44,12 @@ class AppUser(FlaskLoginMixin, Base):
     )
 
     password_hash = Column(String)
-    username = Column(String)
     first_name = Column(String)
     last_name = Column(String)
-    email = Column(String)
+    email = Column(
+        String,
+        unique=True,
+    )
 
     mood_survey_responses = relationship(
         'MoodSurveyResponse',
