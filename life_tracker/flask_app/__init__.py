@@ -21,4 +21,7 @@ def create_app():
         app.register_blueprint(home.home_bp)
         app.register_blueprint(auth.auth_bp)
 
+        from .plotlydash.dashboard import create_dashboard
+        app = create_dashboard(app)
+
         return app
