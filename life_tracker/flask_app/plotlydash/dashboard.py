@@ -6,7 +6,7 @@ from .layout import layout as dash_layout
 def create_dashboard(server):
     dash_app = Dash(
         server=server,
-        routes_pathname_prefix='/dashapp/',
+        routes_pathname_prefix='/dashboard/',
     )
 
     dash_app.layout = dash_layout
