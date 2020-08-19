@@ -1,4 +1,8 @@
 # LifeTracker
+## Documentation
+
+[The wiki](https://github.com/SeanGrady/life_tracker/wiki)
+
 ## Why a life tracker?
 
 The primary motivation behind this project is that we are not always adept at recognizing cause/effect patterns that influence our lives. Some of these patterns take place over too long of a time period to be easily noticed. For example, daily vitamin D supplementation can take 2-3 months to noticeably affect mood in the best of cases, and up to a year to completely reverse severe deficiency. Other patterns occur over short timescales but still have too much lag between the cause and the effect to be easily noticed, especially if the link between the two doesn't seem obvious--like the mild "hangover" affect some people get the day _after_ eating too much sugar. Still other patterns affect "noisy" aspects of our lives that other factors have a stronger, more immediate (or more confoundingly random) influence on. Those of us with mood disorders are very familiar with this category: I feel a lot better today, it must be the new morning exercise routine! Or... is it the caffeine I had before lunch? Or that I got more sleep than usual last night? Maybe it was the ibuprofen I took yesterday, I've heard that can have an impact on mood...
