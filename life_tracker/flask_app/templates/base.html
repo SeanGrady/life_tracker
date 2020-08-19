@@ -10,6 +10,7 @@
         <div>
             LifeTracker: 
             <a href="{{ url_for('home_bp.index') }}">Home</a>
+            <a href="/dashboard/">Dashboard</a>
             {% if current_user.is_anonymous %}
             <a href="{{ url_for('auth_bp.login') }}">Log In</a>
             {% else %}
