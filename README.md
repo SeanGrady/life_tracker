@@ -4,8 +4,7 @@
 [The wiki](https://github.com/SeanGrady/life_tracker/wiki)
 
 ## The version of everything ↓ down there ↓ that you'll actually read
-
-One of these days...
+*crickets*
 
 ## Why a life tracker?
 
