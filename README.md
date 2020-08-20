@@ -22,7 +22,7 @@ In a perfect world, you would put all your data into this app and it would immed
 
 ## What this project aims to do
 
-* Integrate with as many existing data collection and tracking solutions as possible. Examples are food tracking apps (like LoseIt, MyFitnessPal and Chronometer), or exercise tracking devices (like Fitbit or the Apple Watch).
+* Integrate with as many existing data collection and tracking solutions as possible. Examples are food tracking apps (like LoseIt, MyFitnessPal and Cronometer), or exercise tracking devices (like Fitbit or the Apple Watch).
 * Provide a flexible interface for defining your own metrics and logging them. Tags that can be applied to any given day (for example, `headache` if you had a headache that day) are one possible method. Custom survey questions emailed to you every evening asking questions about your day ("On a scale of 1 to 5 how severe was your anxiety today?") are another.
 * Make it easy to compare any and all of your data to discover trends over time as well as correlations or cause/effect relationships.
 * Allow other people (e.g. personal trainers, primary care doctors, family members) access to some or all of your data.
