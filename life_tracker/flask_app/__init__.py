@@ -17,6 +17,7 @@ def create_app():
     with app.app_context():
         from .home import home
         from .auth import auth
+        from . import callbacks
 
         app.register_blueprint(home.home_bp)
         app.register_blueprint(auth.auth_bp)
