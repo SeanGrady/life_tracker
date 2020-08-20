@@ -60,7 +60,7 @@ def add_survey_responses_to_database(session, user, survey_type, survey_response
             }
             rows.append(row)
 
-        insert_if_not_exists(session, model, rows)
+    insert_if_not_exists(session, model, rows)
 
 def download_gforms_responses_for_user(user_id):
     with contextual_session() as session:
