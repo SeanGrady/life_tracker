@@ -1,5 +1,5 @@
 # LifeTracker
-## Documentation
+## Technical Documentation
 
 [The wiki](https://github.com/SeanGrady/life_tracker/wiki)
 
