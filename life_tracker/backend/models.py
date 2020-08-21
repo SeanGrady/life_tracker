@@ -189,7 +189,7 @@ class CronometerExercise(Base, AppUserMixin, CronometerLogExportMixin):
         nullable=False,
         primary_key=True,
     )
-    mintues = Column(Float)
+    minutes = Column(Float)
     calories_burned = Column(Float)
 
 
