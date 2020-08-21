@@ -115,6 +115,11 @@ class DailyLogMixin(object):
         )
 
 
+class BodyFatPercentage(Base, AppUserMixin, DailyLogMixin):
+    __tablename__ = 'body_fat_percentage'
+    body_fat_percentage = Column(Float)
+
+
 class WeighIn(Base, AppUserMixin, DailyLogMixin):
     __tablename__ = 'weigh_in'
     weight_lbs = Column(Float)
@@ -167,6 +172,3 @@ class CronometerExercise(Base, AppUserMixin, CronometerExportMixin):
     calories_burned = Column(Float)
 
 
-class BodyFatPercentage(Base, AppUserMixin, DailyLogMixin):
-    __tablename__ = 'body_fat_percentage'
-    body_fat_percentage = Column(Float)
