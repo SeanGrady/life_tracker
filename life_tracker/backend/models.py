@@ -208,7 +208,7 @@ class CronometerBiometric(Base, AppUserMixin, CronometerLogExportMixin):
         nullable=False,
     )
     unit = Column(String)
-    Ammount = Column(Float)
+    amount = Column(Float)
 
 
 class CronometerDailySummary(Base, AppUserMixin):
