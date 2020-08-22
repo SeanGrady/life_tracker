@@ -27,12 +27,12 @@ In a perfect world, you would put all your data into this app and it would immed
 * Make it easy to compare any and all of your data to discover trends over time as well as correlations or cause/effect relationships.
 * Allow other people (e.g. personal trainers, primary care doctors, family members) access to some or all of your data.
 
-## What this project does not aim to do
+## What this project does not (currently) aim to do
 
-* Any kind of machine learning or data analysis. This is something I would like to explore as I continue to flesh out the project, but the reality is that aside from some very basic statistical analysis there will almost certainly not be enough data to learn anything meaningful with these methods.
+* Any kind of machine learning involving training models on personal data. This is something I would like to explore as I continue to flesh out the project, but the reality is that aside from some very basic statistical analysis there will almost certainly not be enough data to learn anything meaningful with these methods until users start to have 6 months+ of highly detailed data available.
 * Be anywhere near anything HIPAA-related. Currently, the HIPAA regulations say that broadly speaking as long as you don't bill health insurance or work with anyone who does, you are not a covered entity. Therefore, while providing the information in this app to anyone of your choice including your healthcare provider(s) should be easy for a user to do, working with anyone who is a HIPAA-covered entity or business associate is right out.
 
 ## What this project may aim to do in the future
 
 * Integrate data that was originally HIPAA-covered PHI, such as lab results obtained with your primary care physician--think tracking cholesterol levels over time. I am not a HIPAA lawyer, but my understanding of the regulations is that if a user independently requests their medical data from their healthcare provider(s) and voluntarily uploads it to an app like this one, it is no longer covered under HIPAA. I will want to consult someone who _is_ a HIPAA lawyer before starting anything like this.
-* Implement limited machine learning. Bag-of-words sentiment analysis on uploaded journal entries is one possible example of a method that may yield useful results, since it can use existing models and does not need to be trained directly on user data, of which there will be relatively little.
+* Implement data analysis and possibly limited machine learning. Already-established-as-useful statistical metrics like heart rate variability are one option here, as is general statistical analysis like determining possible correlations via pairwise covariance. Bag-of-words sentiment analysis on uploaded journal entries is one possible example of a machine-learning-related method that may also yield useful results, since it can use existing models and does not need to be trained directly on user data.
