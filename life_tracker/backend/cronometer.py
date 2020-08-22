@@ -66,9 +66,9 @@ class CronometerDataLoader(object):
 
 
     def load_exports_into_database(self):
-        for export in export_types:
+        for export in self.export_types:
             export_filepath = self.export_directory / self.export_filenames[export]
-            export_data = pd.load_csv(export_filepath)
+            export_data = pd.read_csv(export_filepath)
             export_data['app_user_id'] = self.user.id
 
             """Rename the columns so that they match the model/table's column names"""
@@ -77,7 +77,7 @@ class CronometerDataLoader(object):
                 name: snake_case_cronometer_column_name(name)
                 for name in column_names
             }
-            export_data.rename(columns=column_rename_map)
+            export_data = export_data.rename(columns=column_rename_map)
 
             import pdb;pdb.set_trace()
             export_data.to_sql(
@@ -86,6 +86,3 @@ class CronometerDataLoader(object):
                 if_exists='append',
                 index=False,
             )
-
-
-
