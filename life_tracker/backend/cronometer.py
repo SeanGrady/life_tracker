@@ -84,6 +84,7 @@ class CronometerDataLoader(object):
                 name=self.export_models[export].__table__.name,
                 con=self.session.get_bind(),
                 if_exists='append',
+                index=False,
             )
 
 
