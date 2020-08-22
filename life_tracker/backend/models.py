@@ -203,9 +203,19 @@ class CronometerNote(Base, AppUserMixin, CronometerLogExportMixin):
 
 class CronometerBiometric(Base, AppUserMixin, CronometerLogExportMixin):
     __tablename__ = 'cronometer_biometric'
+    """
+    Overload the CronometerLogExportMixin's time column because for whatever
+    reason time can be None for biometrics
+    """
+    time = Column(
+        Time,
+        nullable=True,
+        primary_key=False,
+    )
     metric = Column(
         String,
         nullable=False,
+        primary_key=True,
     )
     unit = Column(String)
     amount = Column(Float)
