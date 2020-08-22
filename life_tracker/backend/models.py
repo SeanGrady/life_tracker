@@ -5,6 +5,8 @@ from sqlalchemy import (
     Date,
     Float,
     DateTime,
+    Time,
+    Boolean,
     ForeignKey,
     UniqueConstraint,
 )
@@ -115,6 +117,11 @@ class DailyLogMixin(object):
         )
 
 
+class BodyFatPercentage(Base, AppUserMixin, DailyLogMixin):
+    __tablename__ = 'body_fat_percentage'
+    body_fat_percentage = Column(Float)
+
+
 class WeighIn(Base, AppUserMixin, DailyLogMixin):
     __tablename__ = 'weigh_in'
     weight_lbs = Column(Float)
@@ -145,28 +152,200 @@ class MoodSurveyResponse(Base, AppUserMixin, GformResponseMixin):
     sleep_hours = Column(Float)
 
 
-class CronometerExportMixin(object):
+class CronometerLogExportMixin(object):
+    """
+    Mixin for Cronometer log-type exports -- i.e. those with a separate 'Date'
+    and 'Time' column. The summary type exports (currently only one) only have
+    a 'Date' column.
+    """
     @declared_attr
-    def date_time(cls):
+    def time(cls):
         return Column(
-            DateTime,
+            Time,
+            nullable=False,
+            primary_key=True,
+        )
+    
+    @declared_attr
+    def day(cls):
+        return Column(
+            Date,
             nullable=False,
             primary_key=True,
         )
 
+    @declared_attr
+    def group(cls):
+        return Column(
+            String,
+            nullable=False,
+            primary_key=True,
+        )
 
-class CronometerExercise(Base, AppUserMixin, CronometerExportMixin):
+class CronometerExercise(Base, AppUserMixin, CronometerLogExportMixin):
     __tablename__ = 'cronometer_exercise'
     exercise = Column(
         String,
         nullable=False,
         primary_key=True,
     )
-    group = Column(String)
-    mintues = Column(Float)
+    minutes = Column(Float)
     calories_burned = Column(Float)
 
 
-class BodyFatPercentage(Base, AppUserMixin, DailyLogMixin):
-    __tablename__ = 'body_fat_percentage'
-    body_fat_percentage = Column(Float)
+class CronometerNote(Base, AppUserMixin, CronometerLogExportMixin):
+    __tablename__ = 'cronometer_note'
+    note = Column(
+        String,
+        nullable=False,
+    )
+
+
+class CronometerBiometric(Base, AppUserMixin, CronometerLogExportMixin):
+    __tablename__ = 'cronometer_biometric'
+    """
+    Overload the CronometerLogExportMixin's time column because for whatever
+    reason time can be None for biometrics
+    """
+    time = Column(
+        Time,
+        nullable=True,
+        primary_key=False,
+    )
+    metric = Column(
+        String,
+        nullable=False,
+        primary_key=True,
+    )
+    unit = Column(String)
+    amount = Column(Float)
+
+
+class CronometerDailySummary(Base, AppUserMixin):
+    __tablename__ = 'cronometer_daily_summary'
+    date = Column(
+        Date,
+        nullable=False,
+        primary_key=True,
+    )
+    completed = Column(Boolean)
+
+    energy_kcal = Column(Float)
+    alcohol_g = Column(Float)
+    caffeine_mg = Column(Float)
+    water_g = Column(Float)
+    b1_thiamine_mg = Column(Float)
+    b2_riboflavin_mg = Column(Float)
+    b3_niacin_mg = Column(Float)
+    b5_pantothenic_acid_mg = Column(Float)
+    b6_pyridoxine_mg = Column(Float)
+    b12_cobalamin_ug = Column(Float)
+    folate_ug = Column(Float)
+    vitamin_a_iu = Column(Float)
+    vitamin_c_mg = Column(Float)
+    vitamin_d_iu = Column(Float)
+    vitamin_e_mg = Column(Float)
+    vitamin_k_ug = Column(Float)
+    calcium_mg = Column(Float)
+    copper_mg = Column(Float)
+    iron_mg = Column(Float)
+    magnesium_mg = Column(Float)
+    manganese_mg = Column(Float)
+    phosphorus_mg = Column(Float)
+    potassium_mg = Column(Float)
+    selenium_ug = Column(Float)
+    sodium_mg = Column(Float)
+    zinc_mg = Column(Float)
+    carbs_g = Column(Float)
+    fiber_g = Column(Float)
+    starch_g = Column(Float)
+    sugars_g = Column(Float)
+    net_carbs_g = Column(Float)
+    fat_g = Column(Float)
+    cholesterol_mg = Column(Float)
+    monounsaturated_g = Column(Float)
+    polyunsaturated_g = Column(Float)
+    saturated_g = Column(Float)
+    trans_fats_g = Column(Float)
+    omega_3_g = Column(Float)
+    omega_6_g = Column(Float)
+    cystine_g = Column(Float)
+    histidine_g = Column(Float)
+    isoleucine_g = Column(Float)
+    leucine_g = Column(Float)
+    lysine_g = Column(Float)
+    methionine_g = Column(Float)
+    phenylalanine_g = Column(Float)
+    protein_g = Column(Float)
+    threonine_g = Column(Float)
+    tryptophan_g = Column(Float)
+    tyrosine_g = Column(Float)
+    valine_g = Column(Float)
+
+
+class CronometerServing(Base, AppUserMixin, CronometerLogExportMixin):
+    __tablename__ = 'cronometer_serving'
+
+    food_name = Column(
+	String,
+	nullable=False,
+	primary_key=True,
+    )
+    amount = Column(
+        String,
+        nullable=False,
+        primary_key=True,
+    )
+    category = Column(String)
+
+    energy_kcal = Column(Float)
+    alcohol_g = Column(Float)
+    caffeine_mg = Column(Float)
+    water_g = Column(Float)
+    b1_thiamine_mg = Column(Float)
+    b2_riboflavin_mg = Column(Float)
+    b3_niacin_mg = Column(Float)
+    b5_pantothenic_acid_mg = Column(Float)
+    b6_pyridoxine_mg = Column(Float)
+    b12_cobalamin_ug = Column(Float)
+    folate_ug = Column(Float)
+    vitamin_a_iu = Column(Float)
+    vitamin_c_mg = Column(Float)
+    vitamin_d_iu = Column(Float)
+    vitamin_e_mg = Column(Float)
+    vitamin_k_ug = Column(Float)
+    calcium_mg = Column(Float)
+    copper_mg = Column(Float)
+    iron_mg = Column(Float)
+    magnesium_mg = Column(Float)
+    manganese_mg = Column(Float)
+    phosphorus_mg = Column(Float)
+    potassium_mg = Column(Float)
+    selenium_ug = Column(Float)
+    sodium_mg = Column(Float)
+    zinc_mg = Column(Float)
+    carbs_g = Column(Float)
+    fiber_g = Column(Float)
+    starch_g = Column(Float)
+    sugars_g = Column(Float)
+    net_carbs_g = Column(Float)
+    fat_g = Column(Float)
+    cholesterol_mg = Column(Float)
+    monounsaturated_g = Column(Float)
+    polyunsaturated_g = Column(Float)
+    saturated_g = Column(Float)
+    trans_fats_g = Column(Float)
+    omega_3_g = Column(Float)
+    omega_6_g = Column(Float)
+    cystine_g = Column(Float)
+    histidine_g = Column(Float)
+    isoleucine_g = Column(Float)
+    leucine_g = Column(Float)
+    lysine_g = Column(Float)
+    methionine_g = Column(Float)
+    phenylalanine_g = Column(Float)
+    protein_g = Column(Float)
+    threonine_g = Column(Float)
+    tryptophan_g = Column(Float)
+    tyrosine_g = Column(Float)
+    valine_g = Column(Float)
