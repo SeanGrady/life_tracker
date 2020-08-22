@@ -30,6 +30,10 @@ def snake_case_cronometer_column_name(column_name):
         '-',
         '_',
     )
+    column_name = column_name.replace(
+        'µ',
+        'u',
+    )
     column_name = column_name.lower()
     return column_name
 

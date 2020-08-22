@@ -33,6 +33,12 @@ class TestSnakeCaseColumnName(unittest.TestCase):
         new_field_name = snake_case_cronometer_column_name(original_field_name)
         self.assertEqual(new_field_name, target_field_name)
 
+    def test_microgram_nonsense(self):
+        original_field_name = 'B12 (Cobalamin) (µg)'
+        target_field_name = 'b12_cobalamin_ug'
+        new_field_name = snake_case_cronometer_column_name(original_field_name)
+        self.assertEqual(new_field_name, target_field_name)
+
 
 if __name__ == '__main__':
     unittest.main()
