@@ -3,8 +3,9 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 
-flask_env_path = Path('.') / '.flaskenv'
-backend_env_path = Path('.') / '.dbenv'
+project_directory = Path(__file__).parent.absolute()
+flask_env_path = project_directory / '.flaskenv'
+backend_env_path = project_directory / '.dbenv'
 load_dotenv(dotenv_path=flask_env_path)
 load_dotenv(dotenv_path=backend_env_path)
 
