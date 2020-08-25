@@ -3,18 +3,18 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 
-env_path = Path('.') / '.flaskenv'
-load_dotenv(dotenv_path=env_path)
+flask_env_path = Path('.') / '.flaskenv'
+backend_env_path = Path('.') / '.dbenv'
+load_dotenv(dotenv_path=flask_env_path)
+load_dotenv(dotenv_path=backend_env_path)
 
 
 class AppConfig(object):
     DATABASE_URI = os.getenv(
         'DATABASE_URI',
-        'postgres+psycopg2://postgres:password@127.0.0.1:5432/lifetracker-test'
     )
     SECRET_KEY = os.getenv(
-        'SECRET_KEY',
-        'no-peeking'
+        'FLASK_SECRET_KEY',
     )
     FLASK_ENV = os.getenv(
         'FLASK_ENV',
