@@ -3,14 +3,13 @@ from life_tracker.backend.crud import contextual_session
 from life_tracker.backend.models import AppUser
 from pathlib import Path
 import argparse
+from life_tracker.config import AppConfig
 
 
-pwd = Path('.')
 default_user_id = 1
-default_export_directory = pwd / 'data_exports/cronometer_exports'
+default_export_directory = AppConfig.PROJECT_DIRECTORY / 'backend/data_ingestion/exports/cronometer_exports'
 
-def ingest_data(user_id, relative_export_directory):
-    export_directory = pwd / relative_export_directory
+def ingest_data(user_id, export_directory):
     with contextual_session() as session:
         user = session.query(AppUser).get(user_id)
         loader = CronometerDataLoader(

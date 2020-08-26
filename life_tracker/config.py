@@ -11,6 +11,7 @@ load_dotenv(dotenv_path=backend_env_path)
 
 
 class AppConfig(object):
+    PROJECT_DIRECTORY = Path(__file__).parent.absolute()
     DATABASE_URI = os.getenv(
         'DATABASE_URI',
     )
