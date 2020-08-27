@@ -14,7 +14,8 @@ config = context.config
 fileConfig(config.config_file_name)
 
 from life_tracker.config import AppConfig
-config.set_main_option('sqlalchemy.url', AppConfig.DATABASE_URI)
+db_uri_escaped = AppConfig.DATABASE_URI.replace('%', '%%')
+config.set_main_option('sqlalchemy.url', db_uri_escaped)
 
 # add your model's MetaData object here
 # for 'autogenerate' support

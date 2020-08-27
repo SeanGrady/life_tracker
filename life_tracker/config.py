@@ -4,6 +4,7 @@ from pathlib import Path
 
 
 project_directory = Path(__file__).parent.absolute()
+
 flask_env_path = project_directory / '.flaskenv'
 backend_env_path = project_directory / '.dbenv'
 load_dotenv(dotenv_path=flask_env_path)
@@ -11,7 +12,7 @@ load_dotenv(dotenv_path=backend_env_path)
 
 
 class AppConfig(object):
-    PROJECT_DIRECTORY = Path(__file__).parent.absolute()
+    PROJECT_DIRECTORY = project_directory
     DATABASE_URI = os.getenv(
         'DATABASE_URI',
     )

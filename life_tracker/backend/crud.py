@@ -30,7 +30,7 @@ from pathlib import Path
 
 engine = create_engine(AppConfig.DATABASE_URI)
 Session = sessionmaker(bind=engine)
-alembic_config_path = Path('.') / 'alembic.ini'
+alembic_config_path = AppConfig.PROJECT_DIRECTORY / 'backend/alembic.ini'
 
 
 def recreate_database():
