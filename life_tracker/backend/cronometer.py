@@ -1,5 +1,6 @@
 import pandas as pd
 from .crud import contextual_session
+from .export_ingestion import insert_dataframe_ignore_duplicates
 from .models import (
     CronometerNote,
     CronometerDailySummary,
@@ -78,10 +79,8 @@ class CronometerDataLoader(object):
                 for name in column_names
             }
             export_data = export_data.rename(columns=column_rename_map)
-
-            export_data.to_sql(
-                name=self.export_models[export].__table__.name,
-                con=self.session.get_bind(),
-                if_exists='append',
-                index=False,
+            
+            insert_dataframe_ignore_duplicates(
+                export_data,
+                self.export_models[export],
             )
