@@ -1,4 +1,7 @@
-from sqlalchemy import create_engine
+from sqlalchemy import (
+    create_engine,
+    MetaData,
+)
 from sqlalchemy.orm import (
     sessionmaker,
     scoped_session,
@@ -34,7 +37,9 @@ alembic_config_path = AppConfig.PROJECT_DIRECTORY / 'backend/alembic.ini'
 
 
 def recreate_database():
-    Base.metadata.drop_all(engine)
+    metadata = MetaData()
+    metadata.reflect(bind=engine)
+    metadata.drop_all(engine)
     Base.metadata.create_all(engine)
     alembic_cfg = Config(alembic_config_path)
     command.stamp(alembic_cfg, "head")
