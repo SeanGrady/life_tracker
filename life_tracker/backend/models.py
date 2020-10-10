@@ -117,6 +117,14 @@ class DailyLogMixin(object):
         )
 
 
+class DailyNutritionReport(Base, AppUserMixin, DailyLogMixin):
+    __tablename__ = 'daily_nutrition_report'
+    total_calories = Column(Integer)
+
+    def update(self, calories):
+        new_calories = self.total_calories + calories
+        self.total_calories = new_calories
+
 class BodyFatPercentage(Base, AppUserMixin, DailyLogMixin):
     __tablename__ = 'body_fat_percentage'
     body_fat_percentage = Column(Float)
