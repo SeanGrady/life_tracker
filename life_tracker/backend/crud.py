@@ -72,6 +72,23 @@ def insert_if_not_exists(session, model, rows):
     session.execute(on_conflict_stmt)
 
 
+def get_or_create(session, model, defaults=None, **kwargs):
+    instance = session.query(model).filter_by(
+        **kwargs
+    ).one_or_none()
+    if instance:
+        return instance, False
+    else:
+        params = dict(
+            (k, v) for k, v in kwargs.items()
+            if not isinstance(v, ClauseElement)
+        )
+        params.update(defaults or {})
+        instance = model(**params)
+        session.add(instance)
+        return instance, True
+
+
 if __name__ == "__main__":
     from models import *
     with contextual_session() as session:
